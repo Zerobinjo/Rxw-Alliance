@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RXW Alliance</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: Arial;
+  background: #0b0b0b;
+  color: #eee;
+}
+
+header {
+  background: linear-gradient(90deg, #1a1a1a, #333);
+  padding: 20px;
+  text-align: center;
+  border-bottom: 2px solid gold;
+}
+
+header h1 {
+  color: gold;
+}
+
+nav {
+  display: flex;
+  justify-content: center;
+  background: #111;
+}
+
+nav a {
+  color: white;
+  padding: 15px;
+  text-decoration: none;
+}
+
+nav a:hover {
+  background: gold;
+  color: black;
+}
+
+.lang {
+  text-align: center;
+  margin: 10px;
+}
+
+button {
+  padding: 8px 15px;
+  margin: 5px;
+  background: gold;
+  border: none;
+  cursor: pointer;
+}
+
+section {
+  padding: 20px;
+}
+
+.card {
+  background: #1a1a1a;
+  padding: 20px;
+  margin: 15px 0;
+  border-radius: 10px;
+  border: 1px solid gold;
+}
+
+input, textarea {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  border-radius: 5px;
+  border: none;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>🏰 Rise of Castle RXW Alliance</h1>
+  <p id="subtitle">Elite Alliance Hub</p>
+</header>
+
+<div class="lang">
+  <button onclick="setLang('en')">English</button>
+  <button onclick="setLang('tr')">Türkçe</button>
+</div>
+
+<nav>
+  <a href="#info" id="nav1">Info</a>
+  <a href="#guides" id="nav2">Guides</a>
+  <a href="#apply" id="nav3">Apply</a>
+</nav>
+
+<section id="info">
+  <div class="card">
+    <h2 id="infoTitle">Alliance Info</h2>
+    <p id="infoText">Welcome to RXW Alliance. Add your info here.</p>
+  </div>
+</section>
+
+<section id="guides">
+  <div class="card">
+    <h2 id="guideTitle">Guides</h2>
+    <p id="guideText">Add tips and strategies.</p>
+  </div>
+
+  <div class="card">
+    <h3 id="addGuide">Add Guide</h3>
+    <input type="text" id="guideInput" placeholder="Title">
+    <textarea id="guideDesc" placeholder="Description"></textarea>
+    <button onclick="addGuide()">Add</button>
+  </div>
+</section>
+
+<section id="apply">
+  <div class="card">
+    <h2 id="applyTitle">Apply for Alliance</h2>
+    <input type="text" id="name" placeholder="Game Name">
+    <input type="text" id="level" placeholder="Level">
+    <textarea id="reason" placeholder="Why do you want to join?"></textarea>
+    <button onclick="submitForm()">Submit</button>
+  </div>
+</section>
+
+<script>
+let lang = "en";
+
+function setLang(l) {
+  lang = l;
+
+  if(l === "en") {
+    document.getElementById("subtitle").innerText = "Elite Alliance Hub";
+    document.getElementById("nav1").innerText = "Info";
+    document.getElementById("nav2").innerText = "Guides";
+    document.getElementById("nav3").innerText = "Apply";
+    document.getElementById("infoTitle").innerText = "Alliance Info";
+    document.getElementById("infoText").innerText = "Welcome to RXW Alliance. Add your info here.";
+    document.getElementById("guideTitle").innerText = "Guides";
+    document.getElementById("guideText").innerText = "Add tips and strategies.";
+    document.getElementById("addGuide").innerText = "Add Guide";
+    document.getElementById("applyTitle").innerText = "Apply for Alliance";
+  }
+
+  if(l === "tr") {
+    document.getElementById("subtitle").innerText = "Elit İttifak Merkezi";
+    document.getElementById("nav1").innerText = "Bilgi";
+    document.getElementById("nav2").innerText = "Rehberler";
+    document.getElementById("nav3").innerText = "Başvuru";
+    document.getElementById("infoTitle").innerText = "İttifak Bilgisi";
+    document.getElementById("infoText").innerText = "RXW ittifakına hoş geldiniz.";
+    document.getElementById("guideTitle").innerText = "Rehberler";
+    document.getElementById("guideText").innerText = "Stratejiler ekleyin.";
+    document.getElementById("addGuide").innerText = "Rehber Ekle";
+    document.getElementById("applyTitle").innerText = "İttifaka Başvur";
+  }
+}
+
+function addGuide() {
+  let title = document.getElementById("guideInput").value;
+  let text = document.getElementById("guideDesc").value;
+
+  if(title === "" || text === "") {
+    alert("Fill all fields");
+    return;
+  }
+
+  let newCard = document.createElement("div");
+  newCard.className = "card";
+  newCard.innerHTML = "<h3>" + title + "</h3><p>" + text + "</p>";
+
+  document.getElementById("guides").appendChild(newCard);
+
+  document.getElementById("guideInput").value = "";
+  document.getElementById("guideDesc").value = "";
+}
+
+function submitForm() {
+  alert(lang === "en" ? "Application sent!" : "Başvuru gönderildi!");
+}
+</script>
+
+</body>
+</html>
